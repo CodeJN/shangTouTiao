@@ -261,7 +261,12 @@
                 <div class="bg-box bg-box02 bg4-box bg-box-white">
                     <img class="bg4-rg" src="img/bg4-rg.png" alt="">
                     <p class="bg4-text">购买以下三大上头条礼包帮即可帮主播上头条，另额外赠超值豪礼！</p>
-                    <p>抢购还有 <span class="f33">9</span> 天 <span class="f33">24</span> 时 <span class="f33">23</span> 分 <span class="f33">36</span> 秒 结束</p>
+                    <p>抢购还有
+                        <span id="d" class="f33"></span> 天
+                        <span id="h" class="f33"></span> 时
+                        <span id="m" class="f33"></span> 分
+                        <span id="s" class="f33"></span> 秒
+                        结束</p>
                     <p class="bg4-text02">钻石余额：<span>122323</span></p>
                     <img class="bg4-ig-title" src="img/bg4-title02.png" alt="">
                     <div class="bg4-content01 bgc">
@@ -391,6 +396,30 @@
 
             });
             $(".bg3-box-common-list").css("width" , Owidth + "px");
+            function countTime(){
+                //获取当前时间
+                var date = new Date();
+                var now = date.getTime();
+//                 console.log(now);
+                // 截至时间
+                var endDate = new Date("2019/3/10 00:00:00");
+                var end = endDate.getTime();
+//                 console.log(end);
+                var leftTime = end - now;
+//                console.log(leftTime);
+                var d,h,m,s;
+                d = Math.floor(leftTime/1000/60/60/24);
+                h = Math.floor(leftTime/1000/60/60%24);
+                m = Math.floor(leftTime/1000/60%60);
+                s = Math.floor(leftTime/1000%60);
+                //将倒计时赋值到div中
+                $('#d').html(d);
+                $('#h').html(h);
+                $('#m').html(m);
+                $('#s').html(s);
+            }setInterval(countTime,1000);
+            //如果不直接调用，进页面会延迟一秒执行
+            countTime();
         });
     </script>
 </body>
